@@ -1,0 +1,38 @@
+.mat-brand {
+    width: 85px;
+    height: auto;
+}
+
+.mat-mainimages {
+    width: 250px;
+}
+
+.border-mat {
+    border-color: #9BB7DF !important;
+    border-width: 3px;
+}
+
+.mat-bg {
+    background-color: #9BB7DF !important;
+    border-color: #9BB7DF !important;
+    color: white;
+}
+
+.mat-bg:hover {
+    background-color: #6e87ab !important;
+}
+
+.mat-outline-btn {
+    background-color: transparent!important;
+    border-color: #9BB7DF !important;
+    border-width: 2px;
+    color: #9BB7DF;
+    font-weight: bold;
+}
+
+.mat-outline-btn:hover {
+    background-color: #9BB7DF !important;
+    border-color: #9BB7DF !important;
+    color: white;
+    font-weight: bold;
+}
