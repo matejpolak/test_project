@@ -86,3 +86,13 @@
 .hidden {
     display: none;
 }
+
+.mat-submit {
+    position: absolute;
+    bottom: -56px;
+    right: 100px;
+}
+
+.mat-star {
+    color: #9BB7DF;
+}

@@ -13,4 +13,6 @@ let mix = require('laravel-mix');
 
 
 mix.sass('resources/assets/sass/books.scss', 'public/css')
-    .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .less('resources/assets/less/font-awesome.less', 'public/css');
+

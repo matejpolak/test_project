@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'=>'Matej',
             'email'=>'matpolak@seznam.cz',
-            'password'=> 'kolik2110'
+            'password'=> '$2y$10$ApgqGBJE9dnxIyqa/Csb0.UntecIvpr08K78KvMEN497F25wde1D2'
         ]);
     }
 }

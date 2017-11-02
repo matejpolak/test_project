@@ -48,8 +48,21 @@
                             <span class="detail hidden"><h5><i class="fa fa-user mr-2 mt-2" aria-hidden="true"></i> Author</h5><input class="form-control" type="text" name="name" value="{{ $author[0]['name'] }}"></span>
                             <span class="detail"><h5><i class="fa fa-comment mr-2" aria-hidden="true"></i> Notes</h5><p>{{ $book['my_review'] }}</p></span>
                             <span class="detail hidden"><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5><input class="form-control" type="text" name="my_review" value="{{ $book['my_review'] }}"></span>
-                            <span class="detail"><h5><i class="fa fa-star mr-2" aria-hidden="true"></i> Rating</h5><p>{{ $book['my_rating'] }}</p></span>
-                            <span class="detail hidden"><h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5><input class="form-control" type="text" name="my_rating" value="{{ $book['my_rating'] }}"></span>
+                            <span class="detail"><h5><i class="fa fa-star mr-2" aria-hidden="true"></i> Rating</h5><span>@for($i = 0; $i < $book['my_rating']; $i++)<i class="fa fa-star mr-2 mat-star" aria-hidden="true"></i>@endfor @for($i = $book['my_rating']; $i < 10; $i++)<i class="fa fa-star mr-2" aria-hidden="true"></i>@endfor</span></span>
+                            <span class="detail hidden"><h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5>
+                            <select name="my_rating" class="starselect">
+                              <option value="1" @if($book->my_rating == 1) selected @endif>1</option>
+                              <option value="2" @if($book->my_rating == 2) selected @endif>2</option>
+                              <option value="3" @if($book->my_rating == 3) selected @endif>3</option>
+                              <option value="4" @if($book->my_rating == 4) selected @endif>4</option>
+                              <option value="5" @if($book->my_rating == 5) selected @endif>5</option>
+                              <option value="6" @if($book->my_rating == 6) selected @endif>6</option>
+                              <option value="7" @if($book->my_rating == 7) selected @endif>7</option>
+                              <option value="8" @if($book->my_rating == 8) selected @endif>8</option>
+                              <option value="9" @if($book->my_rating == 9) selected @endif>9</option>
+                              <option value="10" @if($book->my_rating == 10) selected @endif>10</option>
+                            </select>
+                            </span>
                             <button type="submit" class="btn mat-btn submit hidden">Submit</button>
                         </form>
                     </div>
@@ -79,8 +92,21 @@
                         <span><h5><i class="fa fa-link mr-2 mt-2" aria-hidden="true"></i> Cover</h5><input class="form-control" type="text" name="cover" value="" placeholder="Enter link to the book cover"></span>
                         <span><h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5><input class="form-control" type="text" name="description" value="" placeholder="Enter description"></span>
                         <span><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5><input class="form-control" type="text" name="my_review" value="" placeholder="Enter your review"></span>
-                        <span><h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5><input class="form-control" type="text" name="my_rating" value="" placeholder="Enter your rating"></span>
-                        <button type="submit" class="btn mat-btn submit">Submit</button>
+                        <span><h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5>
+                            <select name="my_rating" class="starselect">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                            </select>
+                        </span>
+                        <button type="submit" class="btn mat-btn submit mat-submit">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -92,12 +118,19 @@
     <script>
         $('.edit').click(function() {
 
-            $('.edit').text('Details');
-            if($('.edit').text() == 'Details') {
-                $('.edit').text('Edit');
-            }
+
+            if($(this).text() == 'Edit') {
+                $(this).text('Details');
+            } else {
+                $(this).text('Edit');
+            };
             $('.submit').toggleClass('hidden');
             $('.detail').toggleClass('hidden');
         })
+        $(function() {
+            $('.starselect').barrating({
+                theme: 'fontawesome-stars'
+            });
+        });
     </script>
 @endsection
