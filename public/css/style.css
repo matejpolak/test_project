@@ -100,3 +100,7 @@
 .mat-text {
     font-size: 1.5em;
 }
+
+.mat-pointer {
+    cursor: pointer;
+}

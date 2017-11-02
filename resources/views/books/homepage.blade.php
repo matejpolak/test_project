@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pb-5">
                 <div class="col-6 mt-5 d-flex justify-content-around">
                     <div>
                         <img class="mat-mainimages" src="/img/author-10.png" alt="Three books in a row">

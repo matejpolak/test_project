@@ -22,7 +22,7 @@
                                         <div class="mat-text d-flex flex-row-reverse">
                                             <span class="ml-auto">
                                                 <a class="mr-2" href="/authors/delete/{{ $author->id }}"><i class="fa fa-trash-o" aria-hidden="true"></i> </a>
-                                                <buttton> <i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="modal" data-target="#editAuthor-{{ $author->id }}"></i></buttton>
+                                                <buttton> <i class="fa fa-pencil-square-o mat-pointer" aria-hidden="true" data-toggle="modal" data-target="#editAuthor-{{ $author->id }}"></i></buttton>
                                             </span>
                                         </div>
                                     </div>

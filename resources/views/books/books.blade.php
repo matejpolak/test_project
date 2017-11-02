@@ -41,11 +41,13 @@
                     <div class="modal-body">
                         <form id="bookform" action="{{ action('booksController@store', ['id' => $book['id']]) }}" method="post">
                             {{ csrf_field() }}
+
+<!-- *****************************************  TITLE  ***************************************** -->
                             <span class="detail hidden">
                                 <h5><i class="fa fa-book mr-2" aria-hidden="true"></i> Title</h5>
                                 <input class="form-control" type="text" name="title" value="{{ $book['title'] }}">
                             </span>
-
+<!-- *****************************************  DESCRIPTION  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Description</h5>
                                 <p>{{ $book['description'] }}</p>
@@ -55,7 +57,22 @@
                                 <h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5>
                                 <input class="form-control" type="text" name="description" value="{{ $book['description'] }}">
                             </span>
+<!-- *****************************************  COVER  ***************************************** -->
+                            <span class="detail hidden">
+                                <h5><i class="fa fa-picture-o mr-2 mt-2" aria-hidden="true"></i> Cover link</h5>
+                                <input class="form-control" type="text" name="cover" value="{{ $book['cover'] }}">
+                            </span>
+<!-- *****************************************  FINISHED READING AT  ***************************************** -->
+                            <span class="detail hidden">
+                                <h5><i class="fa fa-calendar mr-2 mt-2" aria-hidden="true"></i> Finished reading at</h5>
+                                <input class="form-control" type="date" name="finished" value="{{ $book['finished'] }}">
+                            </span>
 
+                            <span class="detail">
+                                <h5><i class="fa fa-calendar mr-2" aria-hidden="true"></i> Finished reading at</h5>
+                                <p>{{ $book['finished_reading_at'] }}</p>
+                            </span>
+<!-- *****************************************  AUTHOR  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-user mr-2" aria-hidden="true"></i> Author</h5>
                                 <p>{{ $singleAuthor[0]['name'] }}</p>
@@ -69,7 +86,7 @@
                                     @endforeach
                                 </select>
                             </span>
-
+<!-- *****************************************  NOTES  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-comment mr-2" aria-hidden="true"></i> Notes</h5>
                                 <p>{{ $book['my_review'] }}</p>
@@ -78,7 +95,7 @@
                             <span class="detail hidden"><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5>
                                 <input class="form-control" type="text" name="my_review" value="{{ $book['my_review'] }}">
                             </span>
-
+<!-- *****************************************  RATING  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-star mr-2" aria-hidden="true"></i> Rating</h5>
                                 <span>@for($i = 0; $i < $book['my_rating']; $i++)<i class="fa fa-star mr-2 mat-star" aria-hidden="true"></i>@endfor
@@ -126,11 +143,33 @@
                 <div class="modal-body">
                     <form action="/book/new" method="post">
                         {{ csrf_field() }}
-                        <span><h5><i class="fa fa-book mr-2" aria-hidden="true"></i> Title</h5><input class="form-control" type="text" name="title" value="" placeholder="Enter book title"></span>
-                        <span><h5><i class="fa fa-link mr-2 mt-2" aria-hidden="true"></i> Cover</h5><input class="form-control" type="text" name="cover" value="" placeholder="Enter link to the book cover"></span>
-                        <span><h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5><input class="form-control" type="text" name="description" value="" placeholder="Enter description"></span>
-                        <span><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5><input class="form-control" type="text" name="my_review" value="" placeholder="Enter your review"></span>
-                        <span><h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5>
+                        <span>
+                            <h5><i class="fa fa-book mr-2" aria-hidden="true"></i> Title</h5>
+                            <input class="form-control" type="text" name="title" value="" placeholder="Enter book title">
+                        </span>
+
+                        <span>
+                            <h5><i class="fa fa-picture-o mr-2 mt-2" aria-hidden="true"></i> Cover</h5>
+                            <input class="form-control" type="text" name="cover" value="" placeholder="Enter link to the book cover">
+                        </span>
+
+                        <span>
+                            <h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5>
+                            <input class="form-control" type="text" name="description" value="" placeholder="Enter description">
+                        </span>
+
+                        <span>
+                            <h5><i class="fa fa-calendar mr-2 mt-2" aria-hidden="true"></i> Finished reading at</h5>
+                            <input class="form-control" type="date" name="finished" value="">
+                        </span>
+
+                        <span>
+                            <h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5>
+                            <input class="form-control" type="text" name="my_review" value="" placeholder="Enter your review">
+                        </span>
+
+                        <span>
+                            <h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5>
                             <select name="my_rating" class="starselect">
                               <option value="1">1</option>
                               <option value="2">2</option>

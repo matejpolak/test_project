@@ -36,6 +36,12 @@ class booksController extends Controller
         if($_POST['description'] !== null) {
         $book->description = $_POST['description'];
         };
+        if($_POST['cover'] !== null) {
+            $book->cover = $_POST['cover'];
+        };
+        if($_POST['finished'] !== null) {
+            $book->finished_reading_at = $_POST['finished'];
+        };
         if($_POST['my_review'] !== null) {
         $book->my_review = $_POST['my_review'];
         };
@@ -70,6 +76,9 @@ class booksController extends Controller
         };
         if($_POST['my_review'] !== null) {
             $book->my_review = $_POST['my_review'];
+        };
+        if($_POST['finished'] !== null) {
+            $book->finished_reading_at = $_POST['finished'];
         };
         if($_POST['my_rating'] !== null) {
             $book->my_rating = $_POST['my_rating'];
