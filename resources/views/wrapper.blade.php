@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') | BooksBase</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/books.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light bg-light border border-mat border-right-0 border-left-0 border-top-0">
     <div class="w-75 mx-auto d-flex">
         <a class="navbar-brand" href="#">
             <img class="icon-img mat-brand" src="/img/books-icon.png" alt=""> Bookify
@@ -22,7 +23,7 @@
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'active';};?>" href="{{ url('/') }}">Home</a>
                 <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/authors/list') {echo 'active';};?>" href="{{ url('/authors/list') }}">Authors</a>
-                <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/authors/create') {echo 'active';};?>" href="{{ url('/authors/create') }}">Add author</a>
+                <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/books') {echo 'active';};?>" href="{{ url('/books') }}">Books</a>
                 <div class="dropdown">
                     <button class="btn  mat-bg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if(Auth::check())
@@ -57,6 +58,7 @@
         </div>
     </div>
 </nav>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     @yield('content')
 
 <!-- Login Modal -->
@@ -212,7 +214,7 @@
 <!-- End of Modal ******************************* -->
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/f1003c147a.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

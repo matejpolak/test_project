@@ -3,7 +3,7 @@
 @section('title')Homepage @endsection
 
 @section('content')
-    <div class="container-fluid border border-mat border-right-0 border-left-0">
+    <div class="container-fluid border border-mat border-right-0 border-left-0 border-top-0">
         <div class="w-75 mx-auto">
             <div class="row">
                 <div class="col-6 pr-2 d-flex flex-column justify-content-between">

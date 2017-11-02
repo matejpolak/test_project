@@ -19,3 +19,9 @@ Route::get('/', 'indexController@index');
 Route::get('/authors/list', 'authorController@list');
 
 Route::get('/authors/create', 'authorController@create');
+
+Route::get('/books', 'booksController@index');
+
+Route::post('/books/{id}', 'booksController@store');
+
+Route::post('/book/new', 'booksController@new');

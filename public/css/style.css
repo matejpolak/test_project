@@ -9,7 +9,7 @@
 
 .border-mat {
     border-color: #9BB7DF !important;
-    border-width: 3px;
+    border-width: 1px;
 }
 
 .mat-bg {
@@ -35,4 +35,54 @@
     border-color: #9BB7DF !important;
     color: white;
     font-weight: bold;
+}
+
+.mat-btn {
+    background-color: #9BB7DF!important;
+    border-color: #9BB7DF !important;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}
+
+.mat-btn:hover {
+    background-color: #9BB7DF!important;
+    border-color: #566da0 !important;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}
+.shelf {
+    background: url('/img/shelf4.png') center 30px/100% 100% no-repeat scroll;
+}
+
+.mat-book {
+    background: blue;
+    color: white;
+    height: 150px;
+}
+
+.books-button {
+    background-color: transparent;
+    border-color: transparent;
+}
+.modal-dialog.mat {
+    max-width: 800px;
+}
+
+.fa {
+    font-size: 1.5em;
+    color: #888c93;
+}
+
+.modal-body p {
+    color: #888c93;
+}
+
+.mat-modal {
+    background: #EDEFF0;
+}
+
+.hidden {
+    display: none;
 }
