@@ -25,3 +25,9 @@ Route::get('/books', 'booksController@index');
 Route::post('/books/{id}', 'booksController@store');
 
 Route::post('/book/new', 'booksController@new');
+
+Route::post('/author/new', 'authorController@new');
+
+Route::get('/authors/delete/{id}', 'authorController@destroy');
+
+Route::post('/author/edit/{id}', 'authorController@edit');

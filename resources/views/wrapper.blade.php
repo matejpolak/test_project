@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="/css/books.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/fontawesome-stars.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="vendor/select2/dist/js/select2.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light border border-mat border-right-0 border-left-0 border-top-0">
@@ -24,8 +28,9 @@
         <div class="collapse navbar-collapse ml-auto w-75" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'active';};?>" href="{{ url('/') }}">Home</a>
+                <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/books') {echo 'active';};?>" href="{{ url('/books') }}">My Books</a>
                 <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/authors/list') {echo 'active';};?>" href="{{ url('/authors/list') }}">Authors</a>
-                <a class="nav-item nav-link <?php if($_SERVER['REQUEST_URI'] == '/books') {echo 'active';};?>" href="{{ url('/books') }}">Books</a>
+
                 <div class="dropdown">
                     <button class="btn  mat-bg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if(Auth::check())
@@ -48,7 +53,7 @@
                                 </form>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{{ url('profile/')}}">My profile</a>
+                                <a class="dropdown-item" href="{{ url('/books')}}">My Books</a>
                             </li>
                         @else
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
@@ -61,6 +66,7 @@
     </div>
 </nav>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
     @yield('content')
 
 <!-- Login Modal -->

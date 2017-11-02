@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Book;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,9 @@ class booksController extends Controller
         $view = view('books/books');
         $id = auth()->user()->id;
         $books = Book::where('user_id', $id)->get();
+        $authors = Author::get();
         $view->books = $books;
+        $view->authors = $authors;
         return $view;
     }
 
@@ -38,6 +41,9 @@ class booksController extends Controller
         };
         if($_POST['my_rating'] !== null) {
         $book->my_rating = $_POST['my_rating'];
+        };
+        if($_POST['author'] !== null) {
+            $book->author_id = $_POST['author'];
         };
         $book->user_id = auth()->user()->id;
 

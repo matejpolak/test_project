@@ -28,7 +28,7 @@
 
     <!-- Modal -->
     @foreach($books as $book)
-        <?php $author = \App\Author::where('authors.id', '=', $book->author_id)->get()?>
+        <?php $singleAuthor = \App\Author::where('authors.id', '=', $book->author_id)->get()?>
         <div class="modal fade" id="bookDetail-{{ $book['id'] }}" tabindex="-1" role="dialog" aria-labelledby="bookDetailLabel" aria-hidden="true">
             <div class="modal-dialog mat" role="document">
                 <div class="modal-content mat-modal">
@@ -41,27 +41,65 @@
                     <div class="modal-body">
                         <form id="bookform" action="{{ action('booksController@store', ['id' => $book['id']]) }}" method="post">
                             {{ csrf_field() }}
-                            <span class="detail hidden"><h5><i class="fa fa-book mr-2" aria-hidden="true"></i></h5><input class="form-control" type="text" name="title" value="{{ $book['title'] }}"></span>
-                            <span class="detail"><h5><i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Description</h5><p>{{ $book['description'] }}</p></span>
-                            <span class="detail hidden"><h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5><input class="form-control" type="text" name="description" value="{{ $book['description'] }}"></span>
-                            <span class="detail"><h5><i class="fa fa-user mr-2" aria-hidden="true"></i> Author</h5><p>{{ $author[0]['name'] }}</p></span>
-                            <span class="detail hidden"><h5><i class="fa fa-user mr-2 mt-2" aria-hidden="true"></i> Author</h5><input class="form-control" type="text" name="name" value="{{ $author[0]['name'] }}"></span>
-                            <span class="detail"><h5><i class="fa fa-comment mr-2" aria-hidden="true"></i> Notes</h5><p>{{ $book['my_review'] }}</p></span>
-                            <span class="detail hidden"><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5><input class="form-control" type="text" name="my_review" value="{{ $book['my_review'] }}"></span>
-                            <span class="detail"><h5><i class="fa fa-star mr-2" aria-hidden="true"></i> Rating</h5><span>@for($i = 0; $i < $book['my_rating']; $i++)<i class="fa fa-star mr-2 mat-star" aria-hidden="true"></i>@endfor @for($i = $book['my_rating']; $i < 10; $i++)<i class="fa fa-star mr-2" aria-hidden="true"></i>@endfor</span></span>
-                            <span class="detail hidden"><h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5>
-                            <select name="my_rating" class="starselect">
-                              <option value="1" @if($book->my_rating == 1) selected @endif>1</option>
-                              <option value="2" @if($book->my_rating == 2) selected @endif>2</option>
-                              <option value="3" @if($book->my_rating == 3) selected @endif>3</option>
-                              <option value="4" @if($book->my_rating == 4) selected @endif>4</option>
-                              <option value="5" @if($book->my_rating == 5) selected @endif>5</option>
-                              <option value="6" @if($book->my_rating == 6) selected @endif>6</option>
-                              <option value="7" @if($book->my_rating == 7) selected @endif>7</option>
-                              <option value="8" @if($book->my_rating == 8) selected @endif>8</option>
-                              <option value="9" @if($book->my_rating == 9) selected @endif>9</option>
-                              <option value="10" @if($book->my_rating == 10) selected @endif>10</option>
-                            </select>
+                            <span class="detail hidden">
+                                <h5><i class="fa fa-book mr-2" aria-hidden="true"></i> Title</h5>
+                                <input class="form-control" type="text" name="title" value="{{ $book['title'] }}">
+                            </span>
+
+                            <span class="detail">
+                                <h5><i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Description</h5>
+                                <p>{{ $book['description'] }}</p>
+                            </span>
+
+                            <span class="detail hidden">
+                                <h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5>
+                                <input class="form-control" type="text" name="description" value="{{ $book['description'] }}">
+                            </span>
+
+                            <span class="detail">
+                                <h5><i class="fa fa-user mr-2" aria-hidden="true"></i> Author</h5>
+                                <p>{{ $singleAuthor[0]['name'] }}</p>
+                            </span>
+
+                            <span class="detail hidden">
+                                <h5><i class="fa fa-user mr-2 mt-2" aria-hidden="true"></i> Author</h5>
+                                <select class="select2 form-control" name="author">
+                                    @foreach($authors as $author)
+                                        <option value="{{ $author['id'] }}">{{ $author['name'] }}</option>
+                                    @endforeach
+                                </select>
+                            </span>
+
+                            <span class="detail">
+                                <h5><i class="fa fa-comment mr-2" aria-hidden="true"></i> Notes</h5>
+                                <p>{{ $book['my_review'] }}</p>
+                            </span>
+
+                            <span class="detail hidden"><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5>
+                                <input class="form-control" type="text" name="my_review" value="{{ $book['my_review'] }}">
+                            </span>
+
+                            <span class="detail">
+                                <h5><i class="fa fa-star mr-2" aria-hidden="true"></i> Rating</h5>
+                                <span>@for($i = 0; $i < $book['my_rating']; $i++)<i class="fa fa-star mr-2 mat-star" aria-hidden="true"></i>@endfor
+                                    @for($i = $book['my_rating']; $i < 10; $i++)<i class="fa fa-star mr-2" aria-hidden="true"></i>@endfor
+                                </span>
+                            </span>
+
+                            <span class="detail hidden">
+                                <h5><i class="fa fa-star mr-2 mt-2" aria-hidden="true"></i> Rating</h5>
+                                <select name="my_rating" class="starselect">
+                                  <option value="1" @if($book->my_rating == 1) selected @endif>1</option>
+                                  <option value="2" @if($book->my_rating == 2) selected @endif>2</option>
+                                  <option value="3" @if($book->my_rating == 3) selected @endif>3</option>
+                                  <option value="4" @if($book->my_rating == 4) selected @endif>4</option>
+                                  <option value="5" @if($book->my_rating == 5) selected @endif>5</option>
+                                  <option value="6" @if($book->my_rating == 6) selected @endif>6</option>
+                                  <option value="7" @if($book->my_rating == 7) selected @endif>7</option>
+                                  <option value="8" @if($book->my_rating == 8) selected @endif>8</option>
+                                  <option value="9" @if($book->my_rating == 9) selected @endif>9</option>
+                                  <option value="10" @if($book->my_rating == 10) selected @endif>10</option>
+                                </select>
                             </span>
                             <button type="submit" class="btn mat-btn submit hidden">Submit</button>
                         </form>
@@ -116,6 +154,14 @@
         </div>
     </div>
     <script>
+
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Select an option'
+            });
+        });
+
+
         $('.edit').click(function() {
 
 
@@ -132,5 +178,7 @@
                 theme: 'fontawesome-stars'
             });
         });
+
+
     </script>
 @endsection
