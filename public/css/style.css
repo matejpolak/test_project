@@ -104,3 +104,40 @@
 .mat-pointer {
     cursor: pointer;
 }
+
+.mat-btn-red {
+    background-color: #D25166!important;
+    border-color: #D25166 !important;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}
+
+.mat-btn-red:hover {
+    background-color: #a62832 !important;
+    border-color: #a62832 !important;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}
+.mat-edit-btns {
+    position: absolute;
+    bottom: -56px;
+    left: 17px;
+}
+
+.mat-btn-green {
+    background-color: #029D7D!important;
+    border-color: #029D7D !important;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}
+
+.mat-btn-green:hover {
+    background-color: #117240 !important;
+    border-color: #117240 !important;
+    border-width: 2px;
+    color: white;
+    font-weight: bold;
+}

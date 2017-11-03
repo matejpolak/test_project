@@ -31,3 +31,5 @@ Route::post('/author/new', 'authorController@new');
 Route::get('/authors/delete/{id}', 'authorController@destroy');
 
 Route::post('/author/edit/{id}', 'authorController@edit');
+
+Route::get('/book/delete/{id}', 'booksController@delete');

@@ -102,4 +102,10 @@ class booksController extends Controller
         //redirect
         return redirect()->action('booksController@index');
     }
+
+    public function delete($id) {
+        Book::where('id', $id)->delete();
+
+        return redirect()->action('booksController@index');
+    }
 }

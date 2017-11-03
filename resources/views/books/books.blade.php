@@ -66,9 +66,21 @@
                             <!-- *****************************************  COVER  ***************************************** -->
                             <span class="detail hidden">
                                 <h5><i class="fa fa-picture-o mr-2 mt-2" aria-hidden="true"></i> Cover link</h5>
-                                <input class="form-control" type="text" name="cover" data-validation="cover"
+                                <input class="form-control cover-input" type="text" name="cover" data-validation="cover"
                                        value="{{ $book['cover'] }}">
                             </span>
+
+                            <div class="col-3 mx-auto mt-2 detail hidden">
+                                <div id="preview" class="mx-auto">
+                                    <ul class="list-inline mt-3">
+                                        <li class="book">
+                                            <img class="cover-image"
+                                                 src="http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg"
+                                                 alt="Book cover">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <!-- *****************************************  FINISHED READING AT  ***************************************** -->
                             <span class="detail hidden">
                                 <h5><i class="fa fa-calendar mr-2 mt-2" aria-hidden="true"></i> Finished reading at</h5>
@@ -129,13 +141,15 @@
                                   <option value="10" @if($book->my_rating == 10) selected @endif>10</option>
                                 </select>
                             </span>
-                            <button type="submit" class="btn mat-btn submit hidden">Submit</button>
+                            <div class="mat-edit-btns">
+                                <button type="submit" class="btn mat-btn-green submit hidden">Save</button>
+                                <a role="button" class="btn mat-btn-red delete hidden" href="{{ action('booksController@delete', ['id' => $book->id]) }}">Delete</a>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn mat-btn" data-dismiss="modal">Close</button>
                         <button type="button" class="btn mat-btn edit">Edit</button>
-
                     </div>
                 </div>
             </div>
@@ -171,7 +185,9 @@
                             <div id="preview" class="mx-auto">
                                 <ul class="list-inline mt-3">
                                     <li class="book">
-                                        <img class="cover-image" src="http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg" alt="Book cover">
+                                        <img class="cover-image"
+                                             src="http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg"
+                                             alt="Book cover">
                                     </li>
                                 </ul>
                             </div>
@@ -234,6 +250,7 @@
             }
             ;
             $('.submit').toggleClass('hidden');
+            $('.delete').toggleClass('hidden');
             $('.detail').toggleClass('hidden');
         })
         $(function () {
