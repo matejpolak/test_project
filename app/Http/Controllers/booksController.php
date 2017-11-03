@@ -67,6 +67,7 @@ class booksController extends Controller
 
         $book = new Book();
 
+
         //insert data
         if($_POST['title'] !== null) {
             $book->title = $_POST['title'];
@@ -77,14 +78,18 @@ class booksController extends Controller
         if($_POST['my_review'] !== null) {
             $book->my_review = $_POST['my_review'];
         };
-        if($_POST['finished'] !== null) {
+        if(strtotime($_POST['finished'])) {
             $book->finished_reading_at = $_POST['finished'];
+        } else {
+            $book->finished_reading_at = $book->created_at;
         };
         if($_POST['my_rating'] !== null) {
             $book->my_rating = $_POST['my_rating'];
         };
-        if($_POST['cover'] !== null) {
+        if(strlen($_POST['cover']) > 10) {
             $book->cover = $_POST['cover'];
+        } else {
+            $book->cover = 'http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg';
         };
         $book->user_id = auth()->user()->id;
 

@@ -14,10 +14,11 @@
                 <div class="booklist mt-3">
                     <ul class="list-inline mt-3">
                         @foreach($books as $book)
-                            <button type="button" class="books-button" data-toggle="modal" data-target="#bookDetail-{{ $book['id'] }}">
-                            <li class="book">
-                                <img src="{{$book['cover']}}" alt="">
-                            </li>
+                            <button type="button" class="books-button" data-toggle="modal"
+                                    data-target="#bookDetail-{{ $book['id'] }}">
+                                <li class="book">
+                                    <img src="{{$book['cover']}}" alt="">
+                                </li>
                             </button>
                         @endforeach
                     </ul>
@@ -29,25 +30,29 @@
     <!-- Modal -->
     @foreach($books as $book)
         <?php $singleAuthor = \App\Author::where('authors.id', '=', $book->author_id)->get()?>
-        <div class="modal fade" id="bookDetail-{{ $book['id'] }}" tabindex="-1" role="dialog" aria-labelledby="bookDetailLabel" aria-hidden="true">
+        <div class="modal fade" id="bookDetail-{{ $book['id'] }}" tabindex="-1" role="dialog"
+             aria-labelledby="bookDetailLabel" aria-hidden="true">
             <div class="modal-dialog mat" role="document">
                 <div class="modal-content mat-modal">
                     <div class="modal-header border-mat border-top-0 border-left-0 border-right-0">
-                        <span><h5 class="modal-title" id="bookDetailLabel"><i class="fa fa-book mr-2" aria-hidden="true"></i>  {{ $book['title'] }}</h5></span>
+                        <span><h5 class="modal-title" id="bookDetailLabel"><i class="fa fa-book mr-2"
+                                                                              aria-hidden="true"></i> {{ $book['title'] }}</h5></span>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="bookform" action="{{ action('booksController@store', ['id' => $book['id']]) }}" method="post">
-                            {{ csrf_field() }}
+                        <form class="editing-form" id="bookform"
+                              action="{{ action('booksController@store', ['id' => $book['id']]) }}" method="post">
+                        {{ csrf_field() }}
 
-<!-- *****************************************  TITLE  ***************************************** -->
+                        <!-- *****************************************  TITLE  ***************************************** -->
                             <span class="detail hidden">
                                 <h5><i class="fa fa-book mr-2" aria-hidden="true"></i> Title</h5>
-                                <input class="form-control" type="text" name="title" value="{{ $book['title'] }}">
+                                <input class="form-control" type="text" name="title" data-validation="title"
+                                       value="{{ $book['title'] }}">
                             </span>
-<!-- *****************************************  DESCRIPTION  ***************************************** -->
+                            <!-- *****************************************  DESCRIPTION  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-info-circle mr-2" aria-hidden="true"></i> Description</h5>
                                 <p>{{ $book['description'] }}</p>
@@ -55,24 +60,27 @@
 
                             <span class="detail hidden">
                                 <h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5>
-                                <input class="form-control" type="text" name="description" value="{{ $book['description'] }}">
+                                <input class="form-control" type="text" name="description" data-validation="description"
+                                       value="{{ $book['description'] }}">
                             </span>
-<!-- *****************************************  COVER  ***************************************** -->
+                            <!-- *****************************************  COVER  ***************************************** -->
                             <span class="detail hidden">
                                 <h5><i class="fa fa-picture-o mr-2 mt-2" aria-hidden="true"></i> Cover link</h5>
-                                <input class="form-control" type="text" name="cover" value="{{ $book['cover'] }}">
+                                <input class="form-control" type="text" name="cover" data-validation="cover"
+                                       value="{{ $book['cover'] }}">
                             </span>
-<!-- *****************************************  FINISHED READING AT  ***************************************** -->
+                            <!-- *****************************************  FINISHED READING AT  ***************************************** -->
                             <span class="detail hidden">
                                 <h5><i class="fa fa-calendar mr-2 mt-2" aria-hidden="true"></i> Finished reading at</h5>
-                                <input class="form-control" type="date" name="finished" value="{{ $book['finished'] }}">
+                                <input class="form-control" type="date" name="finished" data-validation="finished"
+                                       value="{{ $book['finished'] }}">
                             </span>
 
                             <span class="detail">
                                 <h5><i class="fa fa-calendar mr-2" aria-hidden="true"></i> Finished reading at</h5>
                                 <p>{{ $book['finished_reading_at'] }}</p>
                             </span>
-<!-- *****************************************  AUTHOR  ***************************************** -->
+                            <!-- *****************************************  AUTHOR  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-user mr-2" aria-hidden="true"></i> Author</h5>
                                 <p>{{ $singleAuthor[0]['name'] }}</p>
@@ -86,20 +94,23 @@
                                     @endforeach
                                 </select>
                             </span>
-<!-- *****************************************  NOTES  ***************************************** -->
+                            <!-- *****************************************  NOTES  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-comment mr-2" aria-hidden="true"></i> Notes</h5>
                                 <p>{{ $book['my_review'] }}</p>
                             </span>
 
                             <span class="detail hidden"><h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5>
-                                <input class="form-control" type="text" name="my_review" value="{{ $book['my_review'] }}">
+                                <input class="form-control" type="text" name="my_review" data-validation="notes"
+                                       value="{{ $book['my_review'] }}">
                             </span>
-<!-- *****************************************  RATING  ***************************************** -->
+                            <!-- *****************************************  RATING  ***************************************** -->
                             <span class="detail">
                                 <h5><i class="fa fa-star mr-2" aria-hidden="true"></i> Rating</h5>
-                                <span>@for($i = 0; $i < $book['my_rating']; $i++)<i class="fa fa-star mr-2 mat-star" aria-hidden="true"></i>@endfor
-                                    @for($i = $book['my_rating']; $i < 10; $i++)<i class="fa fa-star mr-2" aria-hidden="true"></i>@endfor
+                                <span>@for($i = 0; $i < $book['my_rating']; $i++)<i class="fa fa-star mr-2 mat-star"
+                                                                                    aria-hidden="true"></i>@endfor
+                                    @for($i = $book['my_rating']; $i < 10; $i++)<i class="fa fa-star mr-2"
+                                                                                   aria-hidden="true"></i>@endfor
                                 </span>
                             </span>
 
@@ -131,7 +142,8 @@
         </div>
     @endforeach
 
-    <div class="modal fade" id="newBook" tabindex="-1" role="dialog" aria-labelledby="bookDetailLabel" aria-hidden="true">
+    <div class="modal fade" id="newBook" tabindex="-1" role="dialog" aria-labelledby="bookDetailLabel"
+         aria-hidden="true">
         <div class="modal-dialog mat" role="document">
             <div class="modal-content mat-modal">
                 <div class="modal-header border-mat border-top-0 border-left-0 border-right-0">
@@ -141,31 +153,45 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/book/new" method="post">
+                    <form id="newBook-form" action="/book/new" method="post">
                         {{ csrf_field() }}
                         <span>
                             <h5><i class="fa fa-book mr-2" aria-hidden="true"></i> Title</h5>
-                            <input class="form-control" type="text" name="title" value="" placeholder="Enter book title">
+                            <input class="form-control" type="text" name="title" data-validation="title" value=""
+                                   placeholder="Enter book title">
                         </span>
 
                         <span>
                             <h5><i class="fa fa-picture-o mr-2 mt-2" aria-hidden="true"></i> Cover</h5>
-                            <input class="form-control" type="text" name="cover" value="" placeholder="Enter link to the book cover">
+                            <input class="form-control cover-input" type="text" name="cover" value=""
+                                   placeholder="Enter link to the book cover">
                         </span>
+
+                        <div class="col-3 mx-auto mt-2">
+                            <div id="preview" class="mx-auto">
+                                <ul class="list-inline mt-3">
+                                    <li class="book">
+                                        <img class="cover-image" src="http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg" alt="Book cover">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
                         <span>
                             <h5><i class="fa fa-info-circle mr-2 mt-2" aria-hidden="true"></i> Description</h5>
-                            <input class="form-control" type="text" name="description" value="" placeholder="Enter description">
+                            <input class="form-control" type="text" name="description" value=""
+                                   placeholder="Enter description">
                         </span>
 
                         <span>
                             <h5><i class="fa fa-calendar mr-2 mt-2" aria-hidden="true"></i> Finished reading at</h5>
-                            <input class="form-control" type="date" name="finished" value="">
+                            <input class="form-control" type="date" name="finished" data-validation="finished" value="">
                         </span>
 
                         <span>
                             <h5><i class="fa fa-comment mr-2 mt-2" aria-hidden="true"></i> Notes</h5>
-                            <input class="form-control" type="text" name="my_review" value="" placeholder="Enter your review">
+                            <input class="form-control" type="text" name="my_review" value=""
+                                   placeholder="Enter your review">
                         </span>
 
                         <span>
@@ -192,31 +218,42 @@
             </div>
         </div>
     </div>
+
+
     <script>
-
-        $(document).ready(function() {
-            $('.select2').select2({
-                placeholder: 'Select an option'
-            });
-        });
+        /*
+                EDITING BOOKS
+         */
+        $('.edit').click(function () {
 
 
-        $('.edit').click(function() {
-
-
-            if($(this).text() == 'Edit') {
+            if ($(this).text() == 'Edit') {
                 $(this).text('Details');
             } else {
                 $(this).text('Edit');
-            };
+            }
+            ;
             $('.submit').toggleClass('hidden');
             $('.detail').toggleClass('hidden');
         })
-        $(function() {
+        $(function () {
             $('.starselect').barrating({
                 theme: 'fontawesome-stars'
             });
         });
+
+        $('.cover-input').change(function () {
+            var val = $(this).val();
+            $('.cover-image').attr('src', val);
+        });
+
+
+        /*
+                FORM VALIDATION
+         */
+
+        var form = $('#newBook-form');
+        var validator = new Validator(form);
 
 
     </script>
