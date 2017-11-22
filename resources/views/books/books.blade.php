@@ -75,7 +75,7 @@
                                     <ul class="list-inline mt-3">
                                         <li class="book">
                                             <img class="cover-image"
-                                                 src="http://www.jameshmayfield.com/wp-content/uploads/2015/03/defbookcover-min.jpg"
+                                                 src="{{ $book->cover }}"
                                                  alt="Book cover">
                                         </li>
                                     </ul>
